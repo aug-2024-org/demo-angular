@@ -1,0 +1,118 @@
+<div class="container">
+  <h2>LIST OF STUDENTS</h2>
+  <button type="button" class="btn btn-success my-2" (click)="toggleAddForm()">
+    ADD NEW STUDENT
+  </button>
+  <div class="container" *ngIf="showAddForm">
+    <div class="row my-5">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <h4 id="message"></h4>
+        <div class="card">
+          <div class="card-header bg-success text-light">
+            <h4>ADD A NEW STUDENT</h4>
+          </div>
+          <div class="card-body">
+            <div class="form-control-group">
+              <label for="sName" class="form-label">Student Name:</label>
+              <input
+                type="text"
+                id="sName"
+                class="form-control"
+                placeholder="Enter Student Name"
+                [(ngModel)]="newStudent.name"
+              />
+            </div>
+            <div class="form-control-group">
+              <label for="sAge" class="form-label">Student Age:</label>
+              <input
+                type="text"
+                id="sAge"
+                class="form-control"
+                placeholder="Enter Student Age"
+                [(ngModel)]="newStudent.age"
+              />
+            </div>
+            <div class="form-control-group">
+              <label for="sMark" class="form-label">Student Mark:</label>
+              <input
+                type="text"
+                id="sMark"
+                class="form-control"
+                placeholder="Enter Student Mark"
+                [(ngModel)]="newStudent.marks"
+              />
+            </div>
+            <div class="form-control-group">
+              <label for="sDOB" class="form-label">Student DOB:</label>
+              <input
+                type="date"
+                id="sDOB"
+                class="form-control"
+                placeholder="Enter Student DOB"
+                [(ngModel)]="newStudent.dateOfBirth"
+              />
+            </div>
+          </div>
+          <div class="card-footer bg-success">
+            <button
+              type="button"
+              class="btn btn-light text-success"
+              (click)="addStudent()"
+            >
+              ADD
+            </button>
+            <button type="reset" class="btn btn-light text-success mx-5">
+              CLEAR
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-2"></div>
+    </div>
+  </div>
+  <table class="table table-stripped">
+    <thead>
+      <tr class="table-dark">
+        <th>ID</th>
+        <th>NAME</th>
+        <th>AGE</th>
+        <th>MARKS</th>
+        <th>DOB</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let eachStudent of allStudents">
+        <td>{{ eachStudent.id }}</td>
+        <td>{{ eachStudent.name }}</td>
+        <td>{{ eachStudent.age }}</td>
+        <td>
+          {{ eachStudent.marks }}
+        </td>
+        <td>
+          {{ eachStudent.dateOfBirth }}
+        </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="editStudent(eachStudent.id)"
+          >
+            @if (eachStudent.editable) {Update} @else {Edit}
+          </button>
+        </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="deleteStudent(eachStudent.id)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

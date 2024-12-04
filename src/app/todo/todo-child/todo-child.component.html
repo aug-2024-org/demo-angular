@@ -1,0 +1,20 @@
+<li class="list-group-item">
+  <span
+    class="material-symbols-outlined"
+    *ngIf="todoItem.completed"
+    (click)="handleCompleted(todoItem)"
+  >
+    check_circle
+  </span>
+  <span
+    class="material-symbols-outlined"
+    *ngIf="!todoItem.completed"
+    (click)="handleCompleted(todoItem)"
+  >
+    cancel
+  </span>
+  {{ todoItem.title }}
+  <button type="button" class="btn btn-danger" (click)="handleRemove(todoItem)">
+    Remove
+  </button>
+</li>

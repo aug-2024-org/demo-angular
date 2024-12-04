@@ -1,0 +1,13 @@
+<h2>Display Component</h2>
+<p>movieName displayed using string interpolation</p>
+<p>{{ movieName }}</p>
+
+<p>movieName displayed using string interpolation</p>
+<input type="text" value="{{ movieName }}">
+
+<p>movieName displayed using property binding - []</p>
+<input type="text" [value]="movieName">
+
+<p>movieName displayed on click of a button using event binding - ()</p>
+<button type="button" (click)="showMovie()">Click to show movie name</button>
+<p>{{ mName }}</p>

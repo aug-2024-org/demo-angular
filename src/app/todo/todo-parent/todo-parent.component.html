@@ -1,0 +1,15 @@
+<div class="container">
+  <h3>Todo List...</h3>
+  <todo-child-add (addTodo)="handleAddTodo($event)"></todo-child-add>
+  <ul class="list-group">
+    <!-- <li *ngFor="let eachTodo of allTodos" class="list-group-item">
+      {{ eachTodo.title }}
+    </li> -->
+    <todo-child
+      *ngFor="let eachTodo of allTodos"
+      [todoItem]="eachTodo"
+      (deleteTodo)="deleteTodo($event)"
+      (completedTodo)="completedTodo($event)"
+    ></todo-child>
+  </ul>
+</div>
