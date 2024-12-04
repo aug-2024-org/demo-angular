@@ -86,13 +86,13 @@
     <tbody>
       <tr *ngFor="let eachStudent of allStudents">
         <td>{{ eachStudent.id }}</td>
-        <td>{{ eachStudent.name }}</td>
+        <td>{{ eachStudent.name | uppercase }}</td>
         <td>{{ eachStudent.age }}</td>
         <td>
-          {{ eachStudent.marks }}
+          {{ eachStudent.marks | mark : 60 }}
         </td>
         <td>
-          {{ eachStudent.dateOfBirth }}
+          {{ eachStudent.dateOfBirth | date : "dd/MMM/yy" }}
         </td>
         <td>
           <button
@@ -115,4 +115,6 @@
       </tr>
     </tbody>
   </table>
+  {{ 3.676767 | number : "1.2-2" }}
+  {{ 45 | currency : "INR" : "symbol" }}
 </div>
