@@ -5,10 +5,11 @@ import { CounterComponent } from "./counter/counter.component";
 import { ListFruitComponent } from "./list-fruit/list-fruit.component";
 import { ListStudentComponent } from "./list-student/list-student.component";
 import { TodoParentComponent } from "./todo/todo-parent/todo-parent.component";
+import { BookAddComponent } from "./book/book-add/book-add.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, DisplayComponent, CounterComponent, ListFruitComponent, ListStudentComponent, TodoParentComponent],
+  imports: [RouterOutlet, DisplayComponent, CounterComponent, ListFruitComponent, ListStudentComponent, TodoParentComponent, BookAddComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
