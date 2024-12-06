@@ -6,10 +6,12 @@ import { ListFruitComponent } from "./list-fruit/list-fruit.component";
 import { ListStudentComponent } from "./list-student/list-student.component";
 import { TodoParentComponent } from "./todo/todo-parent/todo-parent.component";
 import { BookAddComponent } from "./book/book-add/book-add.component";
+import { BookEditComponent } from "./book/book-edit/book-edit.component";
+import { ParentComponent } from "./lifecycle-methods/parent/parent.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, DisplayComponent, CounterComponent, ListFruitComponent, ListStudentComponent, TodoParentComponent, BookAddComponent],
+  imports: [RouterOutlet, DisplayComponent, CounterComponent, ListFruitComponent, ListStudentComponent, TodoParentComponent, BookAddComponent, BookEditComponent, ParentComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

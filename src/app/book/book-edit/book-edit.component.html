@@ -1,1 +1,103 @@
-<p>book-edit works!</p>
+<div class="container">
+  <!-- <h2 #tem>Book Add</h2>
+      <button type="button" (click)="display(tem)">click</button>
+      <h3>printing template variable : {{ tem }}</h3> -->
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <form [formGroup]="myReactiveForm" (ngSubmit)="updateBook()">
+        <div class="card">
+          <div class="card-header"><h3>EDIT A BOOK</h3></div>
+          <div class="card-body">
+            <div class="form-control-group">
+              <label for="bTitle" class="form-label">Book Title:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="bTitle"
+                formControlName="bookTitle"
+              />
+              <div
+                class="text-danger small"
+                *ngIf="
+                  myReactiveForm.controls['bookTitle'].touched &&
+                  myReactiveForm.controls['bookTitle'].errors?.['required']
+                "
+              >
+                Book Title is required!
+              </div>
+              <div
+                class="text-danger small"
+                *ngIf="
+                myReactiveForm.controls['bookTitle'].touched &&
+                myReactiveForm.controls['bookTitle'].errors?.['minlength']
+              "
+              >
+                Book Title should be atleast 2 characters!
+              </div>
+            </div>
+            <div class="form-control-group">
+              <label for="bAuthorId" class="form-label">Book Author ID:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="bAuthorId"
+                formControlName="bookAuthorId"
+              />
+              <div
+                class="text-danger small"
+                *ngIf="
+                  myReactiveForm.controls['bookAuthorId'].touched &&
+                  myReactiveForm.controls['bookAuthorId'].invalid
+                "
+              >
+                Book Author ID is required!
+              </div>
+            </div>
+            <div class="form-control-group">
+              <label for="bCost" class="form-label">Book Cost:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="bTitle"
+                required
+                formControlName="bookCost"
+              />
+              <div
+                class="text-danger small"
+                *ngIf="
+                  myReactiveForm.controls['bookCost'].touched &&
+                  myReactiveForm.controls['bookCost'].invalid
+                "
+              >
+                Book Cost is required!
+              </div>
+            </div>
+            <div class="form-control-group">
+              <label for="bImage" class="form-label">Book Image URL:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="bImage"
+                formControlName="bookImageUrl"
+              />
+            </div>
+            <div>
+              <button
+                type="submit"
+                class="btn btn-dark text-light mt-2"
+                [disabled]="myReactiveForm.invalid"
+              >
+                UPDATE
+              </button>
+              <button type="reset" class="btn btn-dark text-light mx-5 mt-2">
+                CLEAR
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-2"></div>
+  </div>
+</div>
