@@ -41,7 +41,7 @@
                 type="text"
                 class="form-control"
                 id="bAuthorId"
-                ngModel
+                [(ngModel)]="formData.bookAuthorId"
                 name="bookAuthorId"
                 #boAuthor="ngModel"
                 (change)="display(boAuthor)"

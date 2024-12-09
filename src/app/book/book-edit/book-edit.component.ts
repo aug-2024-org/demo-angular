@@ -8,7 +8,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { Book } from '../book.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BookService } from '../book.service';
 
 @Component({
   selector: 'book-edit',
@@ -17,44 +18,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './book-edit.component.css',
 })
 export class BookEditComponent {
-  allBooks: Book[] = [
-    {
-      id: 1,
-      bookTitle: 'The Great Gatsby',
-      bookAuthorId: 1,
-      bookCost: 10.99,
-      bookImageUrl: 'https://example.com/gatsby.jpg',
-    },
-    {
-      id: 2,
-      bookTitle: 'To Kill a Mockingbird',
-      bookAuthorId: 2,
-      bookCost: 12.99,
-      bookImageUrl: 'https://example.com/to-kill-a-mockingbird.jpg',
-    },
-    {
-      id: 3,
-      bookTitle: '1984',
-      bookAuthorId: 3,
-      bookCost: 9.99,
-      bookImageUrl: 'https://example.com/1984.jpg',
-    },
-    {
-      id: 4,
-      bookTitle: 'Pride and Prejudice',
-      bookAuthorId: 4,
-      bookCost: 11.99,
-      bookImageUrl: 'https://example.com/pride-and-prejudice.jpg',
-    },
-    {
-      id: 5,
-      bookTitle: 'The Catcher in the Rye',
-      bookAuthorId: 5,
-      bookCost: 10.49,
-      bookImageUrl: 'https://example.com/catcher-in-the-rye.jpg',
-    },
-  ];
-
   fetchedBook: Book = {
     id: 0,
     bookTitle: '',
@@ -64,6 +27,7 @@ export class BookEditComponent {
   };
 
   myReactiveForm: FormGroup = new FormGroup({
+    id: new FormControl(0),
     bookTitle: new FormControl('', [
       Validators.required,
       Validators.minLength(2),
@@ -74,12 +38,16 @@ export class BookEditComponent {
   });
   // try using FormBuilder to create the FormGroup object
 
-  constructor(private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private bookService: BookService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     let bId = this.activatedRoute.snapshot.params['bookId'];
-    let data = this.allBooks.find((eachBook) => eachBook.id == bId);
-    if(data){
+    let data = this.bookService.getABook(bId);
+    if (data) {
       this.fetchedBook = data;
     }
     this.myReactiveForm.patchValue(this.fetchedBook);
@@ -88,5 +56,10 @@ export class BookEditComponent {
   updateBook() {
     console.log(this.myReactiveForm.value);
     console.log(this.myReactiveForm);
+    this.bookService.updateBook(this.myReactiveForm.value);
+    // once updated we can navigate to BookListComponent
+    // we need Router for programatically navigating
+    // inject Router through the constructor
+    this.router.navigate(['/book/book-list']);
   }
 }
