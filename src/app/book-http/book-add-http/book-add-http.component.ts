@@ -17,6 +17,7 @@ export class BookAddHttpComponent {
     private router: Router
   ) {}
 
+  errorMessage: string = '';
   formData: Book = {
     id: 0,
     bookTitle: '',
@@ -33,7 +34,13 @@ export class BookAddHttpComponent {
     console.log('myForm:', myForm);
     console.log('myForm value:', myForm.value);
     console.log(this.formData);
-    this.bookHttpService.addBook(this.formData);
-    this.router.navigate(['/book/book-list-http']);
+    this.bookHttpService.addBook(this.formData).subscribe({
+      next: (data) => {
+        this.router.navigate(['/book-http/book-list-http']);
+      },
+      error: (err) => {
+        this.errorMessage = 'Error Adding data...';
+      },
+    });
   }
 }

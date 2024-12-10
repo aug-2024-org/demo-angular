@@ -17,14 +17,7 @@ import { BookHttpService } from '../book-http.service';
   styleUrl: './book-edit-http.component.css',
 })
 export class BookEditHttpComponent {
-  fetchedBook: Book = {
-    id: 0,
-    bookTitle: '',
-    bookAuthorId: null,
-    bookCost: null,
-    bookImageUrl: '',
-  };
-
+  errorMessage: string = '';
   myReactiveForm: FormGroup = new FormGroup({
     id: new FormControl(0),
     bookTitle: new FormControl('', [
@@ -45,20 +38,28 @@ export class BookEditHttpComponent {
 
   ngOnInit() {
     let bId = this.activatedRoute.snapshot.params['bookId'];
-    let data = this.bookHttpService.getABook(bId);
-    if (data) {
-      this.fetchedBook = data;
-    }
-    this.myReactiveForm.patchValue(this.fetchedBook);
+    this.bookHttpService.getABook(bId).subscribe({
+      next: (book) => {
+        this.myReactiveForm.patchValue(book);
+      },
+      error: (err) => {
+        console.log(err);
+        this.errorMessage = 'Error Loading data...';
+      },
+    });
   }
 
   updateBook() {
     console.log(this.myReactiveForm.value);
     console.log(this.myReactiveForm);
-    this.bookHttpService.updateBook(this.myReactiveForm.value);
-    // once updated we can navigate to BookListComponent
-    // we need Router for programatically navigating
-    // inject Router through the constructor
-    this.router.navigate(['/book/book-list-http']);
+    this.bookHttpService.updateBook(this.myReactiveForm.value).subscribe({
+      next: (book) => {
+        this.router.navigate(['/book-http/book-list-http']);
+      },
+      error: (err) => {
+        console.log(err);
+        this.errorMessage = 'Error Updating data...';
+      },
+    });
   }
 }
