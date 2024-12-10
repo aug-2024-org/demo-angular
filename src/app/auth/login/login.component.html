@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class="col-2"></div>
+    <div #mydiv class="col-8">
+      <h3 class="text-danger">{{ errorMessage }}</h3>
+      <form #myForm="ngForm" (ngSubmit)="handleFormSubmit(myForm)">
+        <div class="card">
+          <div class="card-header"><h3>LOGIN</h3></div>
+          <div class="card-body">
+            <div class="form-control-group">
+              <label for="uName" class="form-label">User Id:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="uName"
+                ngModel
+                name="id"
+                #uId="ngModel"
+                required
+              />
+              <div
+                class="text-danger small"
+                *ngIf="uId.touched && uId.errors?.['required']"
+              >
+                User Id is required!
+              </div>
+            </div>
+            <div class="form-control-group">
+              <label for="uPassword" class="form-label">Password:</label>
+              <input
+                type="password"
+                class="form-control"
+                id="uPassword"
+                ngModel
+                name="userPassword"
+                #uPassword="ngModel"
+                required
+              />
+              <div
+                class="text-danger small"
+                *ngIf="uPassword.touched && uPassword.errors?.['required']"
+              >
+                User Password is required!
+              </div>
+            </div>
+            <div>
+              <button
+                type="submit"
+                class="btn btn-dark text-light mt-2"
+                [disabled]="myForm.invalid"
+              >
+                LOGIN
+              </button>
+              <button type="reset" class="btn btn-dark text-light mx-5 mt-2">
+                CLEAR
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-2"></div>
+  </div>
+</div>

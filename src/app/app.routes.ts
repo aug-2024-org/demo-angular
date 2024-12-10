@@ -13,58 +13,101 @@ import { BookHomeHttpComponent } from './book-http/book-home-http/book-home-http
 import { BookListHttpComponent } from './book-http/book-list-http/book-list-http.component';
 import { BookAddHttpComponent } from './book-http/book-add-http/book-add-http.component';
 import { BookEditHttpComponent } from './book-http/book-edit-http/book-edit-http.component';
+import { LoginComponent } from './auth/login/login.component';
+import { LogoutComponent } from './auth/logout/logout.component';
 
 export const routes: Routes = [
-    {
-        path: 'display',title:'Display', component: DisplayComponent
-    },
-    {
-        path: 'counter', title:'Counter', component: CounterComponent
-    },
-    {
-        path: 'list-fruits', title:'List Fruits', component: ListFruitComponent
-    },
-    {
-        path: 'todo', title: 'Todo', component: TodoParentComponent
-    },
-    {
-        path: 'list-student', title:'List Student', component: ListStudentComponent
-    },
-    {
-        path: 'book', title:'Book', component: BookHomeComponent, children: [
-            {
-                path: 'book-list', component: BookListComponent
-            },
-            {
-                path: 'book-add', component: BookAddComponent
-            },
-            {
-                path: 'book-edit/:bookId', component: BookEditComponent
-            },
-            {
-                path: '', redirectTo: 'book-list', pathMatch: 'full'
-            }
-        ]
-    },
-    {
-        path: 'book-http', title:'Book Http', component: BookHomeHttpComponent, children: [
-            {
-                path: 'book-list-http', component: BookListHttpComponent
-            },
-            {
-                path: 'book-add-http', component: BookAddHttpComponent
-            },
-            {
-                path: 'book-edit-http/:bookId', component: BookEditHttpComponent
-            },
-            {
-                path: '', redirectTo: 'book-list-http', pathMatch: 'full'
-            }
-        ]
-    },
-    {
-        path: '', redirectTo: 'list-fruits', pathMatch: 'full'
-    },
-    {
-        path: '**', title:'Not Found', component: NotFoundComponent
-    }];
+  {
+    path: 'login',
+    title: 'Login',
+    component: LoginComponent,
+  },
+  {
+    path: 'logout',
+    title: 'Logout',
+    component: LogoutComponent,
+  },
+  {
+    path: 'display',
+    title: 'Display',
+    component: DisplayComponent,
+  },
+  {
+    path: 'counter',
+    title: 'Counter',
+    component: CounterComponent,
+  },
+  {
+    path: 'list-fruits',
+    title: 'List Fruits',
+    component: ListFruitComponent,
+  },
+  {
+    path: 'todo',
+    title: 'Todo',
+    component: TodoParentComponent,
+  },
+  {
+    path: 'list-student',
+    title: 'List Student',
+    component: ListStudentComponent,
+  },
+  {
+    path: 'book',
+    title: 'Book',
+    component: BookHomeComponent,
+    children: [
+      {
+        path: 'book-list',
+        component: BookListComponent,
+      },
+      {
+        path: 'book-add',
+        component: BookAddComponent,
+      },
+      {
+        path: 'book-edit/:bookId',
+        component: BookEditComponent,
+      },
+      {
+        path: '',
+        redirectTo: 'book-list',
+        pathMatch: 'full',
+      },
+    ],
+  },
+  {
+    path: 'book-http',
+    title: 'Book Http',
+    component: BookHomeHttpComponent,
+    children: [
+      {
+        path: 'book-list-http',
+        component: BookListHttpComponent,
+      },
+      {
+        path: 'book-add-http',
+        component: BookAddHttpComponent,
+      },
+      {
+        path: 'book-edit-http/:bookId',
+        component: BookEditHttpComponent,
+      },
+      {
+        path: '',
+        redirectTo: 'book-list-http',
+        pathMatch: 'full',
+      },
+    ],
+  },
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
+    path: '**',
+    title: 'Not Found',
+    component: NotFoundComponent,
+  },
+];

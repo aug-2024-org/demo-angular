@@ -1,32 +1,42 @@
 <nav class="navbar navbar-expand-sm bg-secondary navbar-dark">
   <div class="container-fluid">
     <ul class="navbar-nav">
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="auth.isLoggedIn && (auth.retrieveRole()=='user')">
         <a class="nav-link" routerLink="display" routerLinkActive="active"
           >Display</a
         >
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="auth.isLoggedIn && (auth.retrieveRole()=='user')">
         <a class="nav-link" routerLink="todo" routerLinkActive="active" router
           >Todo</a
         >
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="auth.isLoggedIn && (auth.retrieveRole()=='user')" >
         <a class="nav-link" routerLink="list-student" routerLinkActive="active"
-          >ListS tudent</a
+          >List Student</a
         >
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="auth.isLoggedIn && (auth.retrieveRole()=='user')">
         <a class="nav-link" routerLink="list-fruits" routerLinkActive="active"
           >List Fruits</a
         >
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="auth.isLoggedIn && (auth.retrieveRole()=='admin')">
         <a class="nav-link" routerLink="book" routerLinkActive="active">Book</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="auth.isLoggedIn && (auth.retrieveRole()=='admin')">
         <a class="nav-link" routerLink="book-http" routerLinkActive="active"
           >Book Http</a
+        >
+      </li>
+      <li class="nav-item" *ngIf="!auth.isLoggedIn">
+        <a class="nav-link" routerLink="login" routerLinkActive="active"
+          >Login</a
+        >
+      </li>
+      <li class="nav-item" *ngIf="auth.isLoggedIn">
+        <a class="nav-link" routerLink="logout" routerLinkActive="active"
+          >Logout</a
         >
       </li>
     </ul>
