@@ -1,13 +1,13 @@
 <div class="container">
   <!-- <h2 #tem>Book Add</h2>
-    <button type="button" (click)="display(tem)">click</button>
-    <h3>printing template variable : {{ tem }}</h3> -->
+      <button type="button" (click)="display(tem)">click</button>
+      <h3>printing template variable : {{ tem }}</h3> -->
   <div class="row">
     <div class="col-2"></div>
-    <div #mydiv class="col-8">
-      <form #myForm="ngForm" (ngSubmit)="handleFormSubmit(myForm)">
+    <div class="col-8">
+      <form [formGroup]="myReactiveForm" (ngSubmit)="updateBook()">
         <div class="card">
-          <div class="card-header"><h3>ADD A NEW BOOK</h3></div>
+          <div class="card-header"><h3>EDIT A BOOK</h3></div>
           <div class="card-body">
             <div class="form-control-group">
               <label for="bTitle" class="form-label">Book Title:</label>
@@ -15,22 +15,23 @@
                 type="text"
                 class="form-control"
                 id="bTitle"
-                [(ngModel)]="formData.bookTitle"
-                name="bookTitle"
-                #boTitle="ngModel"
-                (change)="display(boTitle)"
-                required
-                minlength="2"
+                formControlName="bookTitle"
               />
               <div
                 class="text-danger small"
-                *ngIf="boTitle.touched && boTitle.errors?.['required']"
+                *ngIf="
+                  myReactiveForm.controls['bookTitle'].touched &&
+                  myReactiveForm.controls['bookTitle'].errors?.['required']
+                "
               >
                 Book Title is required!
               </div>
               <div
                 class="text-danger small"
-                *ngIf="boTitle.touched && boTitle.errors?.['minlength']"
+                *ngIf="
+                myReactiveForm.controls['bookTitle'].touched &&
+                myReactiveForm.controls['bookTitle'].errors?.['minlength']
+              "
               >
                 Book Title should be atleast 2 characters!
               </div>
@@ -41,15 +42,14 @@
                 type="text"
                 class="form-control"
                 id="bAuthorId"
-                [(ngModel)]="formData.bookAuthorId"
-                name="bookAuthorId"
-                #boAuthor="ngModel"
-                (change)="display(boAuthor)"
-                required
+                formControlName="bookAuthorId"
               />
               <div
                 class="text-danger small"
-                *ngIf="boAuthor.touched && boAuthor.invalid"
+                *ngIf="
+                  myReactiveForm.controls['bookAuthorId'].touched &&
+                  myReactiveForm.controls['bookAuthorId'].invalid
+                "
               >
                 Book Author ID is required!
               </div>
@@ -60,14 +60,15 @@
                 type="text"
                 class="form-control"
                 id="bTitle"
-                [(ngModel)]="formData.bookCost"
-                name="bookCost"
                 required
-                #boCost="ngModel"
+                formControlName="bookCost"
               />
               <div
                 class="text-danger small"
-                *ngIf="boCost.touched && boCost.invalid"
+                *ngIf="
+                  myReactiveForm.controls['bookCost'].touched &&
+                  myReactiveForm.controls['bookCost'].invalid
+                "
               >
                 Book Cost is required!
               </div>
@@ -78,17 +79,16 @@
                 type="text"
                 class="form-control"
                 id="bImage"
-                [(ngModel)]="formData.bookImageUrl"
-                name="bookImageUrl"
+                formControlName="bookImageUrl"
               />
             </div>
             <div>
               <button
                 type="submit"
                 class="btn btn-dark text-light mt-2"
-                [disabled]="myForm.invalid"
+                [disabled]="myReactiveForm.invalid"
               >
-                ADD
+                UPDATE
               </button>
               <button type="reset" class="btn btn-dark text-light mx-5 mt-2">
                 CLEAR

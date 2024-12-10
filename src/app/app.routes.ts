@@ -9,6 +9,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { BookHomeComponent } from './book/book-home/book-home.component';
 import { BookAddComponent } from './book/book-add/book-add.component';
 import { BookEditComponent } from './book/book-edit/book-edit.component';
+import { BookHomeHttpComponent } from './book-http/book-home-http/book-home-http.component';
+import { BookListHttpComponent } from './book-http/book-list-http/book-list-http.component';
+import { BookAddHttpComponent } from './book-http/book-add-http/book-add-http.component';
+import { BookEditHttpComponent } from './book-http/book-edit-http/book-edit-http.component';
 
 export const routes: Routes = [
     {
@@ -39,6 +43,22 @@ export const routes: Routes = [
             },
             {
                 path: '', redirectTo: 'book-list', pathMatch: 'full'
+            }
+        ]
+    },
+    {
+        path: 'book-http', title:'Book Http', component: BookHomeHttpComponent, children: [
+            {
+                path: 'book-list-http', component: BookListHttpComponent
+            },
+            {
+                path: 'book-add-http', component: BookAddHttpComponent
+            },
+            {
+                path: 'book-edit-http/:bookId', component: BookEditHttpComponent
+            },
+            {
+                path: '', redirectTo: 'book-list-http', pathMatch: 'full'
             }
         ]
     },

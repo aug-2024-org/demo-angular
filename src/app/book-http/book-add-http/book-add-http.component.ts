@@ -2,17 +2,20 @@ import { Component } from '@angular/core';
 import { Book } from '../book.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { BookService } from '../book.service';
+import { BookHttpService } from '../book-http.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'book-add',
+  selector: 'book-add-http',
   imports: [FormsModule, CommonModule],
-  templateUrl: './book-add.component.html',
-  styleUrl: './book-add.component.css',
+  templateUrl: './book-add-http.component.html',
+  styleUrl: './book-add-http.component.css',
 })
-export class BookAddComponent {
-  constructor(private bookService: BookService, private router: Router) {}
+export class BookAddHttpComponent {
+  constructor(
+    private bookHttpService: BookHttpService,
+    private router: Router
+  ) {}
 
   formData: Book = {
     id: 0,
@@ -30,7 +33,7 @@ export class BookAddComponent {
     console.log('myForm:', myForm);
     console.log('myForm value:', myForm.value);
     console.log(this.formData);
-    this.bookService.addBook(this.formData);
-    //this.router.navigate(['/book/book-list']);
+    this.bookHttpService.addBook(this.formData);
+    this.router.navigate(['/book/book-list-http']);
   }
 }

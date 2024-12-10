@@ -1,0 +1,27 @@
+<div class="container m-3">
+  <div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-12" *ngFor="let eachBook of allBooks">
+      <div class="card m-2">
+        <img
+          class="card-img-top"
+          [src]="eachBook.bookImageUrl"
+          alt="Card image"
+        />
+        <div class="card-body">
+          <h4 class="card-title">{{ eachBook.bookTitle }}</h4>
+          <p class="card-text">Book ID: {{ eachBook.id }}</p>
+          <p class="card-text">Book Author ID : {{ eachBook.bookAuthorId }}</p>
+          <p class="card-text">
+            Book Price : {{ eachBook.bookCost | currency : "USD" : "symbol" }}
+          </p>
+          <button class="btn btn-primary" (click)="editBook(eachBook.id)">
+            Edit
+          </button>
+          <button class="btn btn-danger mx-3" (click)="deleteBook(eachBook.id)">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
