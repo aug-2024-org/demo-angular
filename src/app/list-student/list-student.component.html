@@ -84,11 +84,18 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let eachStudent of allStudents">
+      <tr *ngFor="let eachStudent of allStudents" appDataHighlight>
         <td>{{ eachStudent.id }}</td>
         <td>{{ eachStudent.name | uppercase }}</td>
-        <td>{{ eachStudent.age }}</td>
-        <td>
+        <td
+          [ngStyle]="{
+            'background-color':
+              eachStudent.age > 21 ? 'lightgreen' : 'lightpink'
+          }"
+        >
+          {{ eachStudent.age }}
+        </td>
+        <td [ngClass]="eachStudent.marks > 60 ? 'text-success' : 'text-danger'">
           {{ eachStudent.marks | mark : 60 }}
         </td>
         <td>
