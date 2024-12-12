@@ -20,4 +20,10 @@ describe('AppHeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('template contains Login link', () => {
+    const element: HTMLElement = fixture.nativeElement;
+    const loginLink = element.querySelector('a[href="/login"]');
+    expect(loginLink).toBeTruthy();
+  })
 });

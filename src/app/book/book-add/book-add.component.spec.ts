@@ -8,9 +8,8 @@ describe('BookAddComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BookAddComponent]
-    })
-    .compileComponents();
+      imports: [BookAddComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BookAddComponent);
     component = fixture.componentInstance;
@@ -19,5 +18,10 @@ describe('BookAddComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('template should contain submit button', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('button[type="submit"]')).toBeTruthy();
   });
 });

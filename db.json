@@ -45,14 +45,14 @@
             "bookImageUrl": "https://cdn.pixabay.com/photo/2021/10/14/13/50/book-6709160_1280.jpg"
         },
         {
-            "id": 0,
+            "id": "0",
             "bookTitle": "Harry Potter and the Prisoner of Azkaban",
             "bookAuthorId": "501",
             "bookCost": "300",
             "bookImageUrl": "https://cdn.pixabay.com/photo/2022/12/01/00/13/antique-7627999_1280.jpg"
         },
         {
-            "id": 0,
+            "id": "0",
             "bookTitle": "Harry Potter and the Order of Phoenix",
             "bookAuthorId": "501",
             "bookCost": "400",
